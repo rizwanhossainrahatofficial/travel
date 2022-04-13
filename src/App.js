@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Link, NavLink, Route, Routes, useParams } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import Header from './components/Header/Header';
+
+import Home from './components/Home/Home';
+
+import AuthProvider from './components/context/AuthPorvider';
+
+import Login from './components/Login/Login'
+import Order from './components/Order/Order';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Myorder from './components/Myorder/Myorder';
+
+
+
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <AuthProvider>
+     <BrowserRouter>
+    <Header></Header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />    
+        <Route path="/myorder" element={<Myorder />} />    
+        <Route path="/home/myorder/:id" element={<PrivateRoute><Order /></PrivateRoute>} />    
+        {/* <Route path="/myorder" element={<Myoreder />} />     */}
+        <Route path="/myorder/:id" element={<PrivateRoute><Order /></PrivateRoute>} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+  </BrowserRouter>
+     </AuthProvider>
     </div>
   );
 }
