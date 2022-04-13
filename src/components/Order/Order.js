@@ -9,7 +9,7 @@ const Order = () => {
      const [order,setorder]=useState([])
 
      useEffect(()=>{
-         fetch(`http://localhost:5000/spots/${id}`)
+         fetch(`https://aqueous-island-70963.herokuapp.com/spots/${id}`)
          .then(res=>res.json())
          .then(data=>setorder(data))
      },[])
@@ -17,7 +17,7 @@ const Order = () => {
     const { register, formState: { errors }, handleSubmit ,reset} = useForm();
     const onSubmit = data =>{ 
         console.log(data)
-        axios.post('http://localhost:5000/spots',data)
+        axios.post('https://aqueous-island-70963.herokuapp.com/spots',data)
         .then(res=>{
             if(res.data.insertedId){
                 alert('Register succesfully complete')

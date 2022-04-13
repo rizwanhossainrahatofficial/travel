@@ -8,7 +8,7 @@ const Home = () => {
    
     const [spots,setSpots]=useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/spots')
+        fetch('https://aqueous-island-70963.herokuapp.com/spots')
         .then(res=>res.json())
         .then(data=>setSpots(data))
     },[])

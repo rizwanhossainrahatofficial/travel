@@ -11,7 +11,7 @@ const RegisteredOrder = (props) => {
 const[orders,setorders]=useState([])
 console.log(orders._id)
     useEffect(()=>{
-        fetch('http://localhost:5000/myorder')
+        fetch('https://aqueous-island-70963.herokuapp.com/myorder')
         .then(res=>res.json())
         .then(data=>setorders(data))
     },[])
@@ -19,7 +19,7 @@ console.log(orders._id)
     const handleDelete=id=>{
         const proceed=window.confirm('Are you sure you want to delete?')
         if(proceed){
-            const url=`http://localhost:5000/myorder${id}`
+            const url=`https://aqueous-island-70963.herokuapp.com/myorder/${id}`
             fetch(url,{
                 method:'DELETE'
             })
